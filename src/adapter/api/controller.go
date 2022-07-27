@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 
 	"clean-architecture/clean-architecture-go/src/application/repositories"
@@ -10,28 +9,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// album represents data about a record album.
-type album struct {
-    ID     string  `json:"id"`
-    Title  string  `json:"title"`
-    Artist string  `json:"artist"`
-    Price  float64 `json:"price"`
-}
-
-// albums slice to seed record album data.
-var albums = []album{
-    {ID: "1", Title: "Blue Train", Artist: "John Coltrane", Price: 56.99},
-    {ID: "2", Title: "Jeru", Artist: "Gerry Mulligan", Price: 17.99},
-    {ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
-}
-
 type DogFactsController struct {
     Router *gin.Engine
 	DogFactsRepository repositories.DogFactsRepositoryAbstract
-}
-
-func init() {
-	fmt.Println("init DogFactsController")
 }
 
 func (ctrl *DogFactsController) SetupRoutes(){
@@ -40,13 +20,28 @@ func (ctrl *DogFactsController) SetupRoutes(){
 }
 
 func (ctrl *DogFactsController) GetAllDogFacts(c *gin.Context) {
+	dogFactPresenterMapper := DogFactPresenterMapper{}
+
 	useCase := usecases.GetAllDogFactsUseCase{ Repository: ctrl.DogFactsRepository }
-	useCase.Execute()
-    c.IndentedJSON(http.StatusOK, albums)
+	dogFacts := useCase.Execute()
+
+	var dogFactsPresenter []DogFactPresenter
+	var i int
+	for i = 0; i < len(dogFacts); i++ {
+		dogFactsPresenter = append(dogFactsPresenter, dogFactPresenterMapper.toApi(dogFacts[i]))
+	}
+	
+    c.IndentedJSON(http.StatusOK, dogFactsPresenter)
 }
 
 func (ctrl *DogFactsController) GetOneDogFactById(c *gin.Context) {
 	var dogFactQueryString DogFactQueryString
 	c.ShouldBindUri(&dogFactQueryString)
-    c.IndentedJSON(http.StatusOK, dogFactQueryString.ID)
+    
+	dogFactPresenterMapper := DogFactPresenterMapper{}
+
+	useCase := usecases.GetOneDogFactByIdUseCase{ DogFactId: dogFactQueryString.DogFactId, Repository: ctrl.DogFactsRepository }
+	dogFact := useCase.Execute()
+
+	c.IndentedJSON(http.StatusOK, dogFactPresenterMapper.toApi(dogFact))
 }

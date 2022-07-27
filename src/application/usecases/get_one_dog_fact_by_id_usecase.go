@@ -5,10 +5,11 @@ import (
 	"clean-architecture/clean-architecture-go/src/domain"
 )
 
-type GetAllDogFactsUseCase struct {
+type GetOneDogFactByIdUseCase struct {
+	DogFactId int32
     Repository repositories.DogFactsRepositoryAbstract
 }
 
-func (useCase *GetAllDogFactsUseCase) Execute() []domain.DogFactEntity {
-    return useCase.Repository.GetAllDogFacts()
+func (useCase *GetOneDogFactByIdUseCase) Execute() domain.DogFactEntity {
+    return useCase.Repository.GetDogFactById(useCase.DogFactId)
 }
