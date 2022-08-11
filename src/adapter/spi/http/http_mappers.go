@@ -2,22 +2,22 @@ package http
 
 import "clean-architecture/clean-architecture-go/src/domain"
 
-type CatFactHttpMapper struct {}
+type CatFactHttpMapper struct{}
 
 func (mapper *CatFactHttpMapper) toEntity(model CatFactApiModel) domain.CatFactEntity {
 	entity := domain.CatFactEntity{
-		FactTxt: model.Fact,
+		FactTxt:    model.Fact,
 		FactLength: model.Length,
 	}
 
-	return entity;
+	return entity
 }
 
-func (mapper *CatFactHttpMapper) toModel(entity domain.CatFactEntity) CatFactApiModel {
-	model := CatFactApiModel{
-		Length: entity.FactLength,
-		Fact: entity.FactTxt,
-	}
+// func (mapper *CatFactHttpMapper) toModel(entity domain.CatFactEntity) CatFactApiModel {
+// 	model := CatFactApiModel{
+// 		Length: entity.FactLength,
+// 		Fact: entity.FactTxt,
+// 	}
 
-	return model;
-}
+// 	return model;
+// }

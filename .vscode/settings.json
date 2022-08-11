@@ -1,5 +1,16 @@
 {
     "cSpell.words": [
         "gorm"
-    ]
+    ],
+    "gopls": {
+        "ui.semanticTokens": true
+    },
+    "[go]": {
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.suggest.snippetsPreventQuickSuggestions": false
+    }
 }

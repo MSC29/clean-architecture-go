@@ -6,11 +6,11 @@ import (
 
 type DogFactEntity struct {
 	FactId int32
-	Fact string
+	Fact   string
 }
 
 type CatFactEntity struct {
-	FactTxt string
+	FactTxt    string
 	FactLength int32
 }
 

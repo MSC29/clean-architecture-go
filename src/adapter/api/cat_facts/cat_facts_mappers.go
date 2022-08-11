@@ -7,11 +7,11 @@ import (
 type CatFactPresenterMapper struct{}
 
 func (mapper *CatFactPresenterMapper) toApi(entity domain.CatFactEntity) CatFactPresenter {
-		return CatFactPresenter{
-			Fact: entity.FactTxt,
-			NbChars: entity.FactLength,
-		}
+	return CatFactPresenter{
+		Fact:    entity.FactTxt,
+		NbChars: entity.FactLength,
 	}
+}
 
 // func (mapper *CatFactPresenterMapper) toEntity(payload BasePayloadEntity) domain.CatFactEntity {
 // 	return domain.ApiError{time.Now(), "not implemented"}

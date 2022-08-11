@@ -14,26 +14,21 @@ cargo build
 
 # Database setup
 
-It's currently configured to run with PostgreSQL through Diesel (ORM), but this being clean architecture feel free to change it :)
+It's currently configured to run with PostgreSQL through Gorm (ORM), but this being clean architecture feel free to change it :)
 
 I suggest
 
 - PostgreSQL [in docker](https://hub.docker.com/_/postgres/)
 - pgAdmin [install](https://www.pgadmin.org/download/pgadmin-4-apt/)
 
-Then install [diesel_cli](https://lib.rs/crates/diesel_cli)
-
-```bash
-diesel setup --database-url postgresql://postgres:postgres@localhost/animal_fact_db
-diesel migration run --database-url postgresql://postgres:postgres@localhost/animal_fact_db
-```
-
 # Running
+
+TODO
 
 define the environment on which we're running by adding `ENV=<env>`, which will use the `.env.<env>` file
 
 ```bash
-ENV=dev cargo run
+ENV=dev go run ./src/main.go
 ```
 
 # Code quality & security
@@ -41,23 +36,13 @@ ENV=dev cargo run
 Used in CI/CD
 
 ```bash
-cargo fmt --all -- --check
-cargo clippy --all-targets
-cargo audit
-cargo outdated
+go fmt <go file or package>
 ```
 
 # Testing
 
-Here's what done in order to mock the SPI
-
-- db: every test is creating a new database from `TestContextPostgreSQL` with json fixtures in `test/fixtures` & spawns the app with this database
-- http: every test also spins up another rust api (if not already up) with the expected routes but test data in `test/fixtures`
-
-```bash
-ENV=test cargo test
-```
+TODO
 
 # API Documentation
 
-TODO: https://github.com/paperclip-rs/paperclip
+TODO

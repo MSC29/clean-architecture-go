@@ -6,10 +6,10 @@ import (
 )
 
 type GetOneDogFactByIdUseCase struct {
-	DogFactId int32
-    Repository repositories.DogFactsRepositoryAbstract
+	DogFactId  int32
+	Repository repositories.DogFactsRepositoryAbstract
 }
 
 func (useCase *GetOneDogFactByIdUseCase) Execute() domain.DogFactEntity {
-    return useCase.Repository.GetDogFactById(useCase.DogFactId)
+	return useCase.Repository.GetDogFactById(useCase.DogFactId)
 }

@@ -10,5 +10,5 @@ type GetOneRandomCatFactUseCase struct {
 }
 
 func (useCase *GetOneRandomCatFactUseCase) Execute() domain.CatFactEntity {
-    return useCase.Repository.GetRandomCatFact()
+	return useCase.Repository.GetRandomCatFact()
 }

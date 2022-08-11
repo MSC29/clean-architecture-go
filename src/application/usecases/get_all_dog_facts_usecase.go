@@ -6,9 +6,9 @@ import (
 )
 
 type GetAllDogFactsUseCase struct {
-    Repository repositories.DogFactsRepositoryAbstract
+	Repository repositories.DogFactsRepositoryAbstract
 }
 
 func (useCase *GetAllDogFactsUseCase) Execute() []domain.DogFactEntity {
-    return useCase.Repository.GetAllDogFacts()
+	return useCase.Repository.GetAllDogFacts()
 }

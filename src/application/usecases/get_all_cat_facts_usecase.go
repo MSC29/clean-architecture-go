@@ -6,9 +6,9 @@ import (
 )
 
 type GetAllCatFactsUseCase struct {
-    Repository repositories.CatFactsRepositoryAbstract
+	Repository repositories.CatFactsRepositoryAbstract
 }
 
 func (useCase *GetAllCatFactsUseCase) Execute() []domain.CatFactEntity {
-    return useCase.Repository.GetAllCatFacts()
+	return useCase.Repository.GetAllCatFacts()
 }

@@ -11,7 +11,7 @@ import (
 )
 
 func StartApp() {
-    router := gin.Default()
+	router := gin.Default()
 
 	dbConnection := db.NewDbConnection()
 	httpConnection := http.NewHttpConnection()
@@ -22,10 +22,10 @@ func StartApp() {
 	var catFactsRepository repositories.CatFactsRepositoryAbstract
 	catFactsRepository = http.NewCatFactsRepository(httpConnection, "https://catfact.ninja")
 
-	dogController := dog_facts.DogFactsController{ Router: router, DogFactsRepository: dogFactsRepository }
+	dogController := dog_facts.DogFactsController{Router: router, DogFactsRepository: dogFactsRepository}
 	dogController.SetupRoutes()
-	catController := cat_facts.CatFactsController{ Router: router, CatFactsRepository: catFactsRepository }
+	catController := cat_facts.CatFactsController{Router: router, CatFactsRepository: catFactsRepository}
 	catController.SetupRoutes()
 
-    router.Run("localhost:8080")
+	router.Run("localhost:8080")
 }

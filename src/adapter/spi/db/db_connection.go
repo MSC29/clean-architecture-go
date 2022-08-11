@@ -4,12 +4,12 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
-  
-type DbConnection struct{
+
+type DbConnection struct {
 	Db *gorm.DB
 }
 
-func NewDbConnection() DbConnection{
+func NewDbConnection() DbConnection {
 	dsn := "host=localhost user=postgres password=postgres dbname=animal_fact_db_go port=5432 sslmode=disable"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -22,6 +22,6 @@ func NewDbConnection() DbConnection{
 	return DbConnection{Db: db}
 }
 
-func (dbConnection *DbConnection) GetManager() *gorm.DB{
+func (dbConnection *DbConnection) GetManager() *gorm.DB {
 	return dbConnection.Db
 }
