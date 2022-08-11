@@ -9,6 +9,11 @@ type DogFactEntity struct {
 	Fact string
 }
 
+type CatFactEntity struct {
+	FactTxt string
+	FactLength int32
+}
+
 type ApiError struct {
 	When time.Time
 	What string

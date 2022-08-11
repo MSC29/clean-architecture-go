@@ -1,4 +1,4 @@
-package api
+package dog_facts
 
 import (
 	"clean-architecture/clean-architecture-go/src/domain"
