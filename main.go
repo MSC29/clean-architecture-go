@@ -8,5 +8,7 @@ import (
 
 func main() {
 	fmt.Println("app starting")
-	infrastructure.StartApp()
+	router := infrastructure.StartApp()
+
+	router.Run("localhost:8080")
 }

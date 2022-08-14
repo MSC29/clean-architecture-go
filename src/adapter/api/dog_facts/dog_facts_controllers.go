@@ -15,7 +15,7 @@ type DogFactsController struct {
 }
 
 func (ctrl *DogFactsController) SetupRoutes() {
-	ctrl.Router.GET("/api/v1/dogs/", ctrl.GetAllDogFacts)
+	ctrl.Router.GET("/api/v1/dogs", ctrl.GetAllDogFacts)
 	ctrl.Router.GET("/api/v1/dogs/:dogFactId", ctrl.GetOneDogFactById)
 }
 

@@ -10,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func StartApp() {
+func StartApp() *gin.Engine {
 	router := gin.Default()
 
 	configuration := NewConfigurationMapper()
@@ -18,16 +18,13 @@ func StartApp() {
 	dbConnection := db.NewDbConnection(configuration)
 	httpConnection := http.NewHttpConnection()
 
-	var dogFactsRepository repositories.DogFactsRepositoryAbstract
-	dogFactsRepository = db.NewDogFactsRepository(dbConnection)
-
-	var catFactsRepository repositories.CatFactsRepositoryAbstract
-	catFactsRepository = http.NewCatFactsRepository(httpConnection, configuration.CatsSource)
+	var dogFactsRepository repositories.DogFactsRepositoryAbstract = db.NewDogFactsRepository(dbConnection)
+	var catFactsRepository repositories.CatFactsRepositoryAbstract = http.NewCatFactsRepository(httpConnection, configuration.CatsSource)
 
 	dogController := dog_facts.DogFactsController{Router: router, DogFactsRepository: dogFactsRepository}
 	dogController.SetupRoutes()
 	catController := cat_facts.CatFactsController{Router: router, CatFactsRepository: catFactsRepository}
 	catController.SetupRoutes()
 
-	router.Run("localhost:8080")
+	return router
 }
