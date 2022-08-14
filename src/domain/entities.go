@@ -18,3 +18,11 @@ type ApiError struct {
 	When time.Time
 	What string
 }
+
+type ConfigurationEntity struct {
+	DatabaseName     string
+	DatabaseUsername string
+	DatabasePassword string
+	CatsSource       string
+	Env              string
+}

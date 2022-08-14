@@ -1,6 +1,9 @@
 package db
 
 import (
+	"clean-architecture/clean-architecture-go/src/domain"
+	"fmt"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -9,8 +12,12 @@ type DbConnection struct {
 	Db *gorm.DB
 }
 
-func NewDbConnection() DbConnection {
-	dsn := "host=localhost user=postgres password=postgres dbname=animal_fact_db_go port=5432 sslmode=disable"
+func NewDbConnection(configuration domain.ConfigurationEntity) DbConnection {
+	dsn := fmt.Sprintf(`host=localhost user=%s password=%s dbname=%s port=5432`,
+		configuration.DatabaseUsername,
+		configuration.DatabasePassword,
+		configuration.DatabaseName,
+	)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")

@@ -13,14 +13,16 @@ import (
 func StartApp() {
 	router := gin.Default()
 
-	dbConnection := db.NewDbConnection()
+	configuration := NewConfigurationMapper()
+
+	dbConnection := db.NewDbConnection(configuration)
 	httpConnection := http.NewHttpConnection()
 
 	var dogFactsRepository repositories.DogFactsRepositoryAbstract
 	dogFactsRepository = db.NewDogFactsRepository(dbConnection)
 
 	var catFactsRepository repositories.CatFactsRepositoryAbstract
-	catFactsRepository = http.NewCatFactsRepository(httpConnection, "https://catfact.ninja")
+	catFactsRepository = http.NewCatFactsRepository(httpConnection, configuration.CatsSource)
 
 	dogController := dog_facts.DogFactsController{Router: router, DogFactsRepository: dogFactsRepository}
 	dogController.SetupRoutes()
