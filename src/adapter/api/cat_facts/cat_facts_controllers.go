@@ -15,7 +15,7 @@ type CatFactsController struct {
 }
 
 func (ctrl *CatFactsController) SetupRoutes() {
-	ctrl.Router.GET("/api/v1/cats/", ctrl.GetAllCatFacts)
+	ctrl.Router.GET("/api/v1/cats", ctrl.GetAllCatFacts)
 	ctrl.Router.GET("/api/v1/cats/random", ctrl.GetOneRandomCatFactById)
 }
 

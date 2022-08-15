@@ -1,4 +1,4 @@
-package tests
+package integration_tests
 
 import (
 	"clean-architecture/clean-architecture-go/src/adapter/spi/db"

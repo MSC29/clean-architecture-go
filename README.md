@@ -41,7 +41,17 @@ go fmt <go file or package>
 
 # Testing
 
-TODO
+run the mock api (https://github.com/tkc/go-json-server)
+
+```bash
+cd tests/integration_tests/mock_api && go-json-server
+```
+
+run the tests
+
+```bash
+ENV=test go test ./...
+```
 
 # API Documentation
 

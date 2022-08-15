@@ -1,0 +1,8 @@
+GET,localhost:3000,HTTP/1.1,/api/cats/facts,127.0.0.1:51322,
+GET,localhost:3000,HTTP/1.1,/api/cats/fact,127.0.0.1:51322,
+GET,localhost:3000,HTTP/1.1,/api/cats/facts,127.0.0.1:51324,
+GET,localhost:3000,HTTP/1.1,/api/cats/fact,127.0.0.1:51324,
+GET,localhost:3000,HTTP/1.1,/api/cats/facts,127.0.0.1:51326,
+GET,localhost:3000,HTTP/1.1,/api/cats/fact,127.0.0.1:51326,
+GET,localhost:3000,HTTP/1.1,/api/cats/facts,127.0.0.1:51328,
+GET,localhost:3000,HTTP/1.1,/api/cats/fact,127.0.0.1:51328,
